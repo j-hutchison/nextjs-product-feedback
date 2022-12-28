@@ -1,0 +1,43 @@
+.vote-tag {
+	width: 4rem;
+	color: var(--navy);
+	font-weight: 700;
+	font-size: 1.3rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.9rem;
+
+	background-color: var(--tag-grey);
+	padding: 1rem 0.8rem;
+	border-radius: 1rem;
+}
+
+.vote-tag:hover {
+	background-color: var(--tag-grey-hover);
+	cursor: pointer;
+}
+
+.vote-tag.active {
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.active .icon {
+	color: var(--white);
+}
+
+.icon {
+	text-align: center;
+	font-size: 1.3rem;
+	height: 0.4rem;
+	color: var(--blue);
+	font-weight: 700;
+}
+
+.number {
+	text-align: center;
+	height: 1.9rem;
+}

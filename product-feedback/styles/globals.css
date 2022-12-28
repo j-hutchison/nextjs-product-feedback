@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	--white: #ffffff;
+	--blue-light: #62bcfa;
+
+	--blue: #4661e6;
+	--blue-hover: #7c91f9;
+	--purple: #ad1fea;
+	--purple-hover: #c75af6;
+	--grey-blue: #373f68;
+	--grey-blue-hover: #656ea3;
+	--red: #d73737;
+	--red-hover: #e98888;
+
+	--navy: #3a4374;
+	--navy-light: #647196;
+	--grey-main: #f2f4ff;
+	--grey-light: #f7f8fd;
+	--orange: ##f49f85;
+
+	--tag-grey: #f2f4fe;
+	--tag-grey-hover: #cfd7ff;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: "Jost", "Lato", sans-serif;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	line-height: 2.3rem;
+	margin: 0;
+	padding: 0;
+}
+
+.body-text-lg {
+	font-size: 1.5rem;
+	line-height: 2.2rem;
+}
+
+.body-text-md {
+	font-size: 1.6rem;
+	line-height: 2.3rem;
+}
+
+.body-text-sm {
+	font-size: 1.3rem;
+	line-height: 1.9rem;
+}
+
+h1 {
+	font-size: 2.4rem;
+	font-weight: bold;
+	line-height: 3.5rem;
+	letter-spacing: -0.33px;
+}
+
+h2 {
+	font-size: 2rem;
+	font-weight: bold;
+	line-height: 2.9rem;
+	letter-spacing: -0.25px;
+}
+
+h3 {
+	font-size: 1.8rem;
+	font-weight: bold;
+	line-height: 2.6rem;
+	letter-spacing: -0.25px;
+}
+
+h4 {
+	font-size: 1.4rem;
+	font-weight: bold;
+	line-height: 2rem;
+	letter-spacing: -0.2px;
+}

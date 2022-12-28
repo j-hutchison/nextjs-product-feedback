@@ -1,0 +1,31 @@
+.tag {
+	width: 4.8rem;
+	color: var(--navy);
+	font-weight: 700;
+	font-size: 1.3rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	background-color: var(--tag-grey);
+	padding: 0.3rem 0;
+	border-radius: 1rem;
+}
+
+.tag:hover {
+	background-color: var(--tag-grey-hover);
+	cursor: pointer;
+}
+
+.tag.active {
+	background-color: var(--blue);
+	color: var(--white);
+}
+
+.number {
+	text-align: center;
+	font-size: 1.3rem;
+	text-transform: uppercase;
+}
