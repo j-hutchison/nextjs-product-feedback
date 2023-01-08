@@ -4,8 +4,7 @@ import Tag from "../components/ui/Tag";
 import ButtonDropdown from "../components/ui/ButtonDropdown";
 import InputField from "../components/ui/InputField";
 import Dropdown from "../components/ui/Dropdown";
-import CustomDropdown from "../components/ui/CustomDropdown";
-import { OptionObject } from "../components/ui/CustomDropdown";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 export default function Home() {
 	const sortOptions = [
@@ -15,15 +14,8 @@ export default function Home() {
 		"Most Comments",
 	];
 
-	const dropDownOptions: OptionObject[] = [
-		{ text: "Option 1", value: "option1" },
-		{ text: "Option 2", value: "option2" },
-		{ text: "Option 3", value: "option3" },
-		{ text: "Option 4", value: "option4" },
-	];
-
 	return (
-		<>
+		<div className="container">
 			{/* <Button color="navy" hasIcon={true}>
 				<span>Button 4</span>
 			</Button>
@@ -31,8 +23,10 @@ export default function Home() {
 			{/* <Tag text="UX"></Tag> */}
 			{/* <ButtonDropdown label="Sort by" options={sortOptions} /> */}
 			{/* <InputField type="text" errorMessage="Can't be empty" /> */}
-			<Dropdown options={sortOptions} />
+			{/* <Dropdown options={sortOptions} /> */}
 			{/* <CustomDropdown options={dropDownOptions} /> */}
-		</>
+			<Sidebar></Sidebar>
+			Hello World! More Content!
+		</div>
 	);
 }

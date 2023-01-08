@@ -8,6 +8,7 @@
 	--blue-hover: #7c91f9;
 	--purple: #ad1fea;
 	--purple-hover: #c75af6;
+	--grey-blue-light: #8397f8;
 	--grey-blue: #373f68;
 	--grey-blue-hover: #656ea3;
 	--red: #d73737;
@@ -17,15 +18,21 @@
 	--navy-light: #647196;
 	--grey-main: #f2f4ff;
 	--grey-light: #f7f8fd;
-	--orange: ##f49f85;
+	--orange: #f49f85;
 
 	--tag-grey: #f2f4fe;
 	--tag-grey-hover: #cfd7ff;
+
+	--banner-height-mobile: 7.2rem;
+	--mobile-sidebar-width: 65%;
 }
 
 * {
 	box-sizing: border-box;
 	font-family: "Jost", "Lato", sans-serif;
+
+	margin: 0;
+	padding: 0;
 }
 
 html {
@@ -89,4 +96,23 @@ ul {
 
 select {
 	appearance: none;
+}
+
+div.container {
+	padding-top: 9.4rem;
+	margin: 0 auto;
+	width: 85vw;
+}
+
+@media only screen and (max-width: 768px) {
+	div.container {
+		width: 100vw;
+		padding: 5.6rem 3.9rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
+	div.container {
+		padding: 0;
+	}
 }

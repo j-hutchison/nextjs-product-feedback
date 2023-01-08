@@ -1,0 +1,193 @@
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	max-width: 25.5rem;
+	gap: 2.4rem;
+}
+
+.sidebar-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2.4rem;
+}
+
+/* TAGS SECTION */
+.tags {
+	padding: 2.4rem;
+}
+
+.tag-list {
+	display: flex;
+	gap: 1rem;
+	justify-content: left;
+	flex-wrap: wrap;
+}
+
+/* ROADMAP SECTION */
+.roadmap {
+	display: flex;
+	flex-direction: column;
+	gap: 2.4rem;
+	padding: 1.9rem 2.4rem;
+}
+.roadmap-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.roadmap-heading h3 {
+	color: var(--navy);
+	font-weight: 700;
+	line-height: 2.6rem;
+	letter-spacing: -0.25px;
+}
+.roadmap-heading a {
+	font-size: 1.3rem;
+	color: var(--blue);
+	font-weight: 600;
+}
+.roadmap-heading a:hover {
+	color: var(--grey-blue-light);
+	font-weight: 600;
+}
+
+.roadmap-suggestion-list {
+	list-style: none;
+	color: var(--navy-light);
+}
+
+@media only screen and (max-width: 768px) {
+	.sidebar {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+
+		max-width: 100%;
+		height: 17.8rem;
+
+		gap: 1rem;
+	}
+
+	.sidebar-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column: 2/ -1;
+		gap: 1rem;
+	}
+
+	.logo-img {
+		height: 100%;
+		max-width: 22.3rem;
+	}
+
+	.sidebar-content {
+		/* display: flex; */
+	}
+
+	.tags {
+		padding: 2.4rem 1.8rem 0 2.4rem;
+	}
+
+	.tag-list {
+		gap: 0.8rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
+	.sidebar {
+		display: flex;
+		flex-direction: column;
+
+		height: unset;
+	}
+
+	.sidebar-overlay {
+		position: absolute;
+		top: var(--banner-height-mobile);
+		width: 100vw;
+		height: 100vh;
+		background-color: #000;
+		opacity: 50%;
+	}
+
+	.sidebar-content {
+		display: flex;
+		position: absolute;
+
+		top: var(--banner-height-mobile);
+		left: 100%;
+
+		visibility: hidden;
+
+		gap: 2.4rem;
+
+		width: var(--mobile-sidebar-width);
+		height: 100vh;
+
+		background-color: #fff;
+
+		transition: all ease-in-out 0.4s;
+
+		z-index: 99999;
+	}
+
+	.sidebar-mobile-visible {
+		visibility: visible;
+		left: calc(100% - var(--mobile-sidebar-width));
+
+		transition: all ease-in-out 0.4s;
+	}
+
+	.sidebar-headings {
+		position: absolute;
+		bottom: 50%;
+
+		transform: translateY(50%);
+	}
+
+	.sidebar-mobile-icon {
+		display: inline-block;
+	}
+
+	.heading-primary {
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 22px;
+		letter-spacing: -0.1875px;
+	}
+	.heading-secondary {
+		font-size: 1.3rem;
+		font-weight: 500;
+		line-height: 19px;
+
+		opacity: 0.75;
+	}
+
+	.logo {
+		position: absolute;
+		top: 0;
+		left: 0;
+		max-height: 7.2rem;
+		width: 100vw;
+	}
+
+	.logo-img {
+		display: block;
+		width: 100%;
+		max-width: unset;
+		height: 7.2rem;
+
+		border-radius: unset;
+	}
+
+	.tags {
+		width: 100%;
+	}
+
+	.roadmap {
+		width: 100%;
+	}
+
+	.tag-list {
+		gap: 0.8rem;
+	}
+}

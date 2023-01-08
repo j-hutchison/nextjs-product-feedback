@@ -1,0 +1,24 @@
+.status-item {
+	display: flex;
+	justify-content: space-between;
+}
+.status-status {
+	display: flex;
+	align-items: center;
+	gap: 1.6rem;
+}
+.status-icon {
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	background-color: var(--purple);
+}
+.status-count {
+	font-weight: 700;
+	line-height: 2.3rem;
+}
+
+.orange {
+	background-color: var(--orange);
+}
