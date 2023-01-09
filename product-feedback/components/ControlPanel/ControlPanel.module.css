@@ -24,3 +24,13 @@
 	gap: 1.6rem;
 	font-weight: 700;
 }
+
+@media only screen and (max-width: 580px) {
+	.control-panel {
+		border-radius: 0;
+		padding-right: 2.4rem;
+	}
+	.total-suggestions {
+		display: none;
+	}
+}

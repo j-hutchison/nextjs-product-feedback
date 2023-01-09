@@ -11,6 +11,8 @@
 	background-color: var(--tag-grey);
 	padding: 0.5rem 1.6rem;
 	border-radius: 1rem;
+
+	text-transform: capitalize;
 }
 
 .tag:hover {

@@ -1,0 +1,37 @@
+.suggestion-list-item {
+	display: flex;
+	align-items: flex-start;
+
+	gap: 4rem;
+	width: 100%;
+
+	padding: 2.8rem 3.2rem;
+}
+.suggestion-list-item-content {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+.suggestion-title {
+	color: var(--navy);
+}
+.suggestion-description {
+	color: var(--navy-light);
+}
+.suggestion-tag-list {
+	display: flex;
+	margin-top: 0.8rem;
+}
+.comments {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+
+	margin-top: 3.6rem;
+}
+.suggestion-comments-count {
+	color: var(--navy);
+	font-weight: 700;
+}

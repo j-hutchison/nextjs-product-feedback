@@ -26,6 +26,7 @@
 	--banner-height-mobile: 7.2rem;
 	--control-panel-height: 7.2rem;
 	--mobile-sidebar-width: 65%;
+	--container-paddingtop-desktop: 9.4rem;
 }
 
 * {
@@ -129,7 +130,12 @@ div.container {
 }
 
 @media only screen and (max-width: 580px) {
+	body {
+		overflow-x: hidden;
+	}
+
 	div.container {
 		padding: 0;
+		gap: 0;
 	}
 }

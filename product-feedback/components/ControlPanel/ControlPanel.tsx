@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Control.module.css";
+import classes from "./ControlPanel.module.css";
 
 import ButtonDropdown from "../ui/ButtonDropdown";
 import Button from "../ui/Button";

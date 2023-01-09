@@ -1,0 +1,33 @@
+.no-suggestions {
+	height: 60rem;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+
+	margin: 0 auto;
+	max-width: 41rem;
+
+	gap: 7rem;
+}
+
+.image {
+	transform: scale(1.3);
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+
+	text-align: center;
+}
+
+.message-title {
+	color: var(--navy);
+}
+.message-detail {
+	color: var(--navy-light);
+}
