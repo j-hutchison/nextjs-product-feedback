@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 	].join(" ");
 
 	return (
-		<div className={classes.sidebar}>
+		<aside className={classes.sidebar}>
 			<LogoBanner onMenuIconClick={handleMenuIconClick} />
 			{showSidebar && <div className={classes["sidebar-overlay"]}></div>}
 			<div className={sidebarClasses}>
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 					</ul>
 				</div>
 			</div>
-		</div>
+		</aside>
 	);
 };
 

@@ -4,7 +4,7 @@ import classes from "./Button.module.css";
 interface ButtonProps {
 	children: ReactNode;
 	color: string;
-	hasIcon?: boolean;
+	iconName?: string;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -12,9 +12,9 @@ const Button: React.FC<ButtonProps> = (props) => {
 
 	return (
 		<button className={`${classes.btn} ${classes[btnColor]}`}>
-			{props.hasIcon && (
+			{props.iconName && (
 				<span className={`${classes.icon} material-symbols-outlined`}>
-					chevron_left
+					{props.iconName}
 				</span>
 			)}
 			{props.children}

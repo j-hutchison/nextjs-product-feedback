@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useState } from "react";
-import classes from "./Dropdown.module.css";
+import classes from "./ButtonDropdown.module.css";
 
 interface ButtonDropdownProps {
 	label: string;
@@ -40,13 +40,21 @@ const ButtonDropdown: React.FC<ButtonDropdownProps> = (props) => {
 
 	return (
 		<div className={classes.container}>
-			<div className={buttonClasses} onClick={handleDropdownButtonClick}>
+			<div className={classes.button} onClick={handleDropdownButtonClick}>
 				<div className={classes["btn-content"]}>
 					<span className={classes["button-label"]}>{props.label}</span>
 					<span className={classes.divider}>:</span>
 					<span className={classes["selected-option"]}>{selectedOption}</span>
 					<span className={classes["dropdown-icon"]}>
-						{showDropdown ? "-" : "+"}
+						{showDropdown ? (
+							<span className={`${classes.icon} material-symbols-outlined`}>
+								<span className="material-symbols-outlined">expand_less</span>
+							</span>
+						) : (
+							<span className={`${classes.icon} material-symbols-outlined`}>
+								<span className="material-symbols-outlined">expand_more</span>
+							</span>
+						)}
 					</span>
 				</div>
 			</div>

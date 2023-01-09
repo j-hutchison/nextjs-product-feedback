@@ -24,6 +24,7 @@
 	--tag-grey-hover: #cfd7ff;
 
 	--banner-height-mobile: 7.2rem;
+	--control-panel-height: 7.2rem;
 	--mobile-sidebar-width: 65%;
 }
 
@@ -59,6 +60,10 @@ body {
 .body-text-sm {
 	font-size: 1.3rem;
 	line-height: 1.9rem;
+}
+
+main {
+	width: 100%;
 }
 
 h1 {
@@ -99,13 +104,25 @@ select {
 }
 
 div.container {
+	display: flex;
+	gap: 3rem;
+
 	padding-top: 9.4rem;
 	margin: 0 auto;
 	width: 85vw;
 }
 
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
 @media only screen and (max-width: 768px) {
 	div.container {
+		flex-direction: column;
+		gap: 4rem;
+
 		width: 100vw;
 		padding: 5.6rem 3.9rem;
 	}
