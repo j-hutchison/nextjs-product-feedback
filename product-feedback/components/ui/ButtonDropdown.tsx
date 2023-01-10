@@ -1,4 +1,5 @@
 import React, { MouseEventHandler, useState } from "react";
+import Link from "next/link";
 import classes from "./ButtonDropdown.module.css";
 
 interface ButtonDropdownProps {
@@ -64,13 +65,13 @@ const ButtonDropdown: React.FC<ButtonDropdownProps> = (props) => {
 						{props.options.map((listItem, index) => {
 							return (
 								<li className={classes["dropdown-option"]} key={index}>
-									<a
+									<Link
 										className={classes["dropdown-link"]}
 										href="/"
 										onClick={handleOptionClick}
 									>
 										{listItem}
-									</a>
+									</Link>
 								</li>
 							);
 						})}

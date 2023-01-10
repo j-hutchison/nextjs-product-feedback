@@ -5,13 +5,17 @@ interface ButtonProps {
 	children: ReactNode;
 	color: string;
 	iconName?: string;
+	onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
 	const btnColor = props.color;
 
 	return (
-		<button className={`${classes.btn} ${classes[btnColor]}`}>
+		<button
+			className={`${classes.btn} ${classes[btnColor]}`}
+			onClick={props.onClick}
+		>
 			{props.iconName && (
 				<span className={`${classes.icon} material-symbols-outlined`}>
 					{props.iconName}
