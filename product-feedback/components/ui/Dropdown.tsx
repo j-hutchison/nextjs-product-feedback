@@ -3,6 +3,8 @@ import classes from "./Dropdown.module.css";
 
 interface DropdownProps {
 	options: string[];
+	title?: string;
+	description?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {

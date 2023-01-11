@@ -1,5 +1,10 @@
 .container {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+
+	width: 100%;
 }
 
 .input {
@@ -17,6 +22,20 @@
 .input:focus {
 	border: 1px solid var(--blue);
 	outline: none;
+}
+
+.input-labels {
+}
+
+.input-label {
+	color: var(--navy);
+	font-size: 1.4rem;
+	font-weight: 700;
+	line-height: 2rem;
+}
+.input-description {
+	color: var(--navy-light);
+	font-size: 1.4rem;
 }
 
 .error,

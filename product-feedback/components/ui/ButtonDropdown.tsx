@@ -2,29 +2,40 @@ import React, { MouseEventHandler, useState } from "react";
 import Link from "next/link";
 import classes from "./ButtonDropdown.module.css";
 
+import { SortOption } from "../../pages";
+
 interface ButtonDropdownProps {
 	label: string;
-	options: string[];
+	options: SortOption[];
+	onOptionClick: (value: SortOption) => void;
 }
 
 const ButtonDropdown: React.FC<ButtonDropdownProps> = (props) => {
-	const [selectedOption, setSelectedOption] = useState(props.options[0]);
+	const [selectedOption, setSelectedOption] = useState(props.options[1]);
 	const [showDropdown, setShowDropdown] = useState(false);
-
-	const buttonClasses = [
-		classes["button"],
-		showDropdown && classes["defocus"],
-	].join(" ");
 
 	const handleOptionClick = (event: React.MouseEvent) => {
 		event.preventDefault();
 
-		const selectedValue = event.currentTarget.innerHTML;
-		console.log(selectedValue);
+		const selectedSortField = event.currentTarget.getAttribute("data-field");
+		let selectedSortType = event.currentTarget.getAttribute("data-type");
+		const selectedSortLabel = event.currentTarget.innerHTML;
 
-		setSelectedOption(() => {
-			return selectedValue;
-		});
+		console.log(event.currentTarget);
+
+		if (selectedSortType !== "asc" && selectedSortType !== "dsc") {
+			selectedSortType = null;
+		}
+
+		const selectedSortOption: SortOption = {
+			field: selectedSortField!,
+			label: selectedSortLabel,
+			type: selectedSortType,
+			isSelected: true,
+		};
+		setSelectedOption(selectedSortOption);
+
+		props.onOptionClick(selectedSortOption);
 
 		setShowDropdown((prevValue) => {
 			return !prevValue;
@@ -45,7 +56,9 @@ const ButtonDropdown: React.FC<ButtonDropdownProps> = (props) => {
 				<div className={classes["btn-content"]}>
 					<span className={classes["button-label"]}>{props.label}</span>
 					<span className={classes.divider}>:</span>
-					<span className={classes["selected-option"]}>{selectedOption}</span>
+					<span className={classes["selected-option"]}>
+						{selectedOption.label}
+					</span>
 					<span className={classes["dropdown-icon"]}>
 						{showDropdown ? (
 							<span className={`${classes.icon} material-symbols-outlined`}>
@@ -69,8 +82,10 @@ const ButtonDropdown: React.FC<ButtonDropdownProps> = (props) => {
 										className={classes["dropdown-link"]}
 										href="/"
 										onClick={handleOptionClick}
+										data-type={listItem.type}
+										data-field={listItem.field}
 									>
-										{listItem}
+										{listItem.label}
 									</Link>
 								</li>
 							);

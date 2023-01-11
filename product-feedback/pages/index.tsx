@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
 	ContextProvider,
 	ApplicationContext,
@@ -8,8 +8,57 @@ import Sidebar from "../components/sidebar/Sidebar";
 import ControlPanel from "../components/controlpanel/ControlPanel";
 import SuggestionList from "../components/suggestion/SuggestionList";
 
+export interface SortOption {
+	field: string;
+	label: string;
+	type: "asc" | "dsc" | null;
+	isSelected: boolean;
+}
+
 export default function Home() {
-	const ctx = useContext(ApplicationContext);
+	const [listSort, setListSort] = useState<SortOption>({
+		field: "",
+		label: "",
+		type: "dsc",
+		isSelected: false,
+	});
+
+	const handleListSort = (options: SortOption) => {
+		setListSort({
+			field: options.field,
+			label: options.label,
+			type: options.type,
+			isSelected: options.isSelected,
+		});
+	};
+
+	//TODO: REMOVE 'ISSELECTED'
+	const controlPanelSortOptions: SortOption[] = [
+		{
+			field: "upvotes",
+			label: "Least Upvotes",
+			type: "asc",
+			isSelected: false,
+		},
+		{
+			field: "upvotes",
+			label: "Most Upvotes",
+			type: "dsc",
+			isSelected: false,
+		},
+		{
+			field: "comments",
+			label: "Least Comments",
+			type: "asc",
+			isSelected: false,
+		},
+		{
+			field: "comments",
+			label: "Most Comments",
+			type: "dsc",
+			isSelected: false,
+		},
+	];
 
 	return (
 		<ContextProvider>
@@ -24,8 +73,11 @@ export default function Home() {
 				{/* <CustomDropdown options={dropDownOptions} /> */}
 				<Sidebar></Sidebar>
 				<main className="flex-column">
-					<ControlPanel />
-					<SuggestionList />
+					<ControlPanel
+						sortOptions={controlPanelSortOptions}
+						handleListSort={handleListSort}
+					/>
+					<SuggestionList sort={listSort} />
 				</main>
 			</div>
 		</ContextProvider>

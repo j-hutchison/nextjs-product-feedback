@@ -6,6 +6,7 @@ import SuggestionListItem from "./SuggestionListItem";
 import SearchingImage from "../../icons/SearchingImage";
 
 import { ApplicationContext } from "../../context/ContextProvider";
+import { SortOption } from "../../pages";
 import data from "../../data.json";
 
 export interface Suggestion {
@@ -14,11 +15,22 @@ export interface Suggestion {
 	title: string;
 	description: string;
 	tags: string[];
-	comments: string[];
+	comments: Comment[];
+}
+
+export interface Comment {
+	id: number;
+	content: string;
+	user: {
+		image: string;
+		name: string;
+		username: string;
+	};
+	replies?: any;
 }
 
 interface SuggestionListProps {
-	// data: Suggestion[];
+	sort: SortOption;
 }
 
 const SuggestionList: React.FC<SuggestionListProps> = (props) => {
@@ -44,7 +56,7 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 				title: productRequest.title,
 				description: productRequest.description,
 				tags: [productRequest.category],
-				comments: ["Test Comment"],
+				comments: productRequest?.comments ? [...productRequest.comments] : [],
 			};
 
 			return thisSuggestion;
@@ -56,8 +68,6 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 
 		console.log(ctx);
 	}, []);
-
-	console.log(ctx.suggestions);
 
 	/** Component to be displayed when no suggestions / data passed into the component */
 	const componentNoSuggestions = (
@@ -83,19 +93,37 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 			{isLoading && <p>Loading...</p>}
 			{!isLoading &&
 				ctx.suggestions.length > 0 &&
-				ctx.suggestions.map((suggestion) => {
-					return (
-						<SuggestionListItem
-							key={suggestion.id}
-							id={suggestion.id}
-							upvotes={suggestion.upvotes}
-							title={suggestion.title}
-							description={suggestion.description}
-							tags={suggestion.tags}
-							comments={suggestion.comments}
-						></SuggestionListItem>
-					);
-				})}
+				ctx.suggestions
+					.sort((suggestion1, suggestion2) => {
+						if (props.sort.field === "upvotes") {
+							if (props.sort.type === "asc") {
+								return suggestion1.upvotes - suggestion2.upvotes;
+							}
+							return suggestion2.upvotes - suggestion1.upvotes;
+						}
+						if (props.sort.field === "comments") {
+							if (props.sort.type === "asc") {
+								return (
+									suggestion1.comments.length - suggestion2.comments.length
+								);
+							}
+							return suggestion2.comments.length - suggestion1.comments.length;
+						}
+						return 0;
+					})
+					.map((suggestion) => {
+						return (
+							<SuggestionListItem
+								key={suggestion.id}
+								id={suggestion.id}
+								upvotes={suggestion.upvotes}
+								title={suggestion.title}
+								description={suggestion.description}
+								tags={suggestion.tags}
+								comments={suggestion.comments}
+							></SuggestionListItem>
+						);
+					})}
 			{!isLoading && ctx.suggestions.length === 0 && componentNoSuggestions}
 		</div>
 	);

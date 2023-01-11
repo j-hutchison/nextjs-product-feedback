@@ -2,6 +2,7 @@
 
 :root {
 	--white: #ffffff;
+	--bg-grey: #f2f2f2;
 	--blue-light: #62bcfa;
 
 	--blue: #4661e6;
@@ -27,6 +28,7 @@
 	--control-panel-height: 7.2rem;
 	--mobile-sidebar-width: 65%;
 	--container-paddingtop-desktop: 9.4rem;
+	--feedback-form-icon-height: 5.2rem;
 }
 
 * {
@@ -46,6 +48,8 @@ body {
 	line-height: 2.3rem;
 	margin: 0;
 	padding: 0;
+
+	background-color: var(--bg-grey);
 }
 
 .body-text-lg {

@@ -4,7 +4,6 @@
 	justify-content: center;
 	gap: 1rem;
 
-	width: 15.8rem;
 	height: 4.4rem;
 
 	color: var(--white);
@@ -17,7 +16,7 @@
 	line-height: 2rem;
 	text-align: center;
 
-	padding: 1.3rem 0 1.1rem 0;
+	padding: 1.3rem 2.4rem 1.1rem;
 }
 
 .btn:hover {

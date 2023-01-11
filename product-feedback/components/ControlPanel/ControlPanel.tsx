@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
+
 import classes from "./ControlPanel.module.css";
 
 import ButtonDropdown from "../ui/ButtonDropdown";
@@ -6,34 +8,39 @@ import Button from "../ui/Button";
 
 import { ApplicationContext } from "../../context/ContextProvider";
 import { Suggestion } from "../suggestion/SuggestionList";
+import { SortOption } from "../../pages";
 
 interface ControlPanelProps {
-	// suggestionCount: number;
+	sortOptions: SortOption[];
+	handleListSort: (sortObject: SortOption) => void;
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = (props) => {
-	const sortOptions = [
-		"Least Votes",
-		"Most Votes",
-		"Least Comments",
-		"Most Comments",
-	];
-
 	const ctx = useContext(ApplicationContext);
+	const router = useRouter();
 
 	const addSuggestion = () => {
-		const newSuggestion: Suggestion = {
-			id: 90,
-			upvotes: 5,
-			title: "Test Add",
-			description: "Test Description",
-			tags: ["UI"],
-			comments: ["Test Comment"],
-		};
+		// const newSuggestion: Suggestion = {
+		// 	id: 90,
+		// 	upvotes: 5,
+		// 	title: "Test Add",
+		// 	description: "Test Description",
+		// 	tags: ["UI"],
+		// 	comments: [],
+		// };
 
-		ctx.setSuggestions([...ctx.suggestions, newSuggestion]);
+		// ctx.setSuggestions([...ctx.suggestions, newSuggestion]);
 
 		console.log(ctx);
+		router.push("/feedback/create");
+	};
+
+	const handleDropdownButtonClick = (selectedOption: SortOption) => {
+		// TODO: Get the value clicked and the order, then call the handleListSort function
+
+		console.log("ControlPanel", selectedOption);
+
+		props.handleListSort(selectedOption);
 	};
 
 	return (
@@ -43,7 +50,11 @@ const ControlPanel: React.FC<ControlPanelProps> = (props) => {
 					<span>💡</span>
 					<span>{ctx.suggestions.length} Suggestions</span>
 				</div>
-				<ButtonDropdown label="Sort by" options={sortOptions} />
+				<ButtonDropdown
+					label="Sort by"
+					options={props.sortOptions}
+					onOptionClick={handleDropdownButtonClick}
+				/>
 			</div>
 			<Button color="purple" iconName={"add"} onClick={addSuggestion}>
 				<span>Add Feedback</span>
