@@ -6,6 +6,9 @@
 	width: 100%;
 
 	padding: 2.8rem 3.2rem;
+
+	background-color: var(--white);
+	border-radius: 1rem;
 }
 .suggestion-list-item-content {
 	flex-grow: 1;
@@ -15,7 +18,13 @@
 	gap: 0.4rem;
 }
 .suggestion-title {
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-decoration: none;
 	color: var(--navy);
+}
+.suggestion-title:hover {
+	color: var(--blue);
 }
 .suggestion-description {
 	color: var(--navy-light);

@@ -1,15 +1,17 @@
 import React from "react";
+import { Suggestion } from "./SuggestionList";
+
 import InputField from "../ui/InputField";
 import Button from "../ui/Button";
-
-import Link from "next/link";
+import GoBackLink from "../ui/GoBackLink";
 
 import classes from "./SuggestionForm.module.css";
 
 interface SuggestionFormProps {
-	mode: "create" | "edit";
+	mode: "create" | "edit" | "view";
 	title: string;
 	icon: React.ReactNode;
+	suggestion?: Suggestion;
 }
 
 const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
@@ -20,9 +22,7 @@ const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
 
 	return (
 		<div className={classes.container}>
-			<div className={classes["navigate-back"]}>
-				<Link href="/">Go Back</Link>
-			</div>
+			<GoBackLink />
 			<form className={classes["feedback-form"]} onSubmit={handleFormSubmit}>
 				<div className={classes["form-icon"]}>{props.icon}</div>
 				<h1>{props.title}</h1>

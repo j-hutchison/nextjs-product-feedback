@@ -1,23 +1,12 @@
 .container {
 	max-width: 54rem;
 
-	margin: 9.2rem auto;
+	margin: 0 auto;
 
 	display: flex;
 	flex-direction: column;
 
 	gap: calc(4rem + (var(--feedback-form-icon-height) / 2));
-}
-
-.navigate-back a {
-	color: var(--navy-light);
-	text-decoration: none;
-	font-weight: 700;
-}
-
-.navigate-back a:hover,
-.navigate-back a:active {
-	text-decoration: underline;
 }
 
 .feedback-form {

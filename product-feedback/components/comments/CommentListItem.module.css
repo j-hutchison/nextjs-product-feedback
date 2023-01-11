@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	gap: 3.2rem;
+}
+.avatar {
+	border-radius: 50%;
+}
+.comment {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+
+	gap: 1.7rem;
+}
+.comment-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.author-details {
+}
+.comment h3 {
+	color: var(--navy);
+	font-size: 1.4rem;
+}
+.comment h4 {
+	color: var(--navy-light);
+	font-size: 1.4rem;
+}
+
+.comment p {
+	color: var(--navy-light);
+}

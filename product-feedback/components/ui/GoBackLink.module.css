@@ -1,0 +1,16 @@
+.navigate-back {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.navigate-back a {
+	color: var(--navy-light);
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.navigate-back a:hover,
+.navigate-back a:active {
+	text-decoration: underline;
+}

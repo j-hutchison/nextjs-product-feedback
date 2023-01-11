@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./SuggestionListItem.module.css";
+import Link from "next/link";
 
 import VoteTag from "../ui/VoteTag";
 import Tag from "../ui/Tag";
@@ -12,7 +13,12 @@ const SuggestionListItem: React.FC<Suggestion> = (props) => {
 		<div className={classes["suggestion-list-item"]}>
 			<VoteTag value={props.upvotes}></VoteTag>
 			<div className={classes["suggestion-list-item-content"]}>
-				<h2 className={classes["suggestion-title"]}>{props.title}</h2>
+				<Link
+					href={`feedback/${props.id}`}
+					className={classes["suggestion-title"]}
+				>
+					{props.title}
+				</Link>
 				<p className={classes["suggestion-description"]}>{props.description}</p>
 				<ul className={classes["suggestion-tag-list"]}>
 					{props.tags.map((tag, id) => (

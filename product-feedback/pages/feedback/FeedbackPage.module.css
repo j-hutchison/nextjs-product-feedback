@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	flex-direction: column;
+
+	gap: 2.4rem;
+
+	margin: 0 auto;
+
+	max-width: 73rem;
+	margin-top: 9.2rem;
+
+	background-color: var(--bg-grey);
+}
+
+.btn-panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
