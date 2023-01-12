@@ -18,15 +18,23 @@ export interface Suggestion {
 	comments: Comment[];
 }
 
+export interface User {
+	image: string;
+	name: string;
+	username: string;
+}
+
 export interface Comment {
 	id: number;
 	content: string;
-	user: {
-		image: string;
-		name: string;
-		username: string;
-	};
-	replies?: any;
+	user: User;
+	replies?: CommentReply[];
+}
+
+export interface CommentReply {
+	content: string;
+	replyingTo: string;
+	user: User;
 }
 
 interface SuggestionListProps {

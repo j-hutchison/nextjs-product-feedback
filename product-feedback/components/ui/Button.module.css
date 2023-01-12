@@ -17,6 +17,7 @@
 	text-align: center;
 
 	padding: 1.3rem 2.4rem 1.1rem;
+	white-space: nowrap;
 }
 
 .btn:hover {

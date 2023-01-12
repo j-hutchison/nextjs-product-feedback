@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./CommentList.module.css";
 
-import { Comment } from "../suggestion/SuggestionList";
+import { Comment, CommentReply } from "../suggestion/SuggestionList";
 import CommentListItem from "./CommentListItem";
 
 interface CommentListProps {
@@ -25,7 +25,12 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
 						}`}
 						key={idx}
 					>
-						<CommentListItem data={comment} />
+						<CommentListItem data={comment}>
+							{comment.replies &&
+								comment.replies.map((reply, replyIdx) => {
+									return <CommentListItem key={replyIdx} data={reply} />;
+								})}
+						</CommentListItem>
 					</div>
 				);
 			})}

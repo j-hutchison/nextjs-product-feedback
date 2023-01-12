@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useImperativeHandle, useRef } from "react";
 import classes from "./InputField.module.css";
+
+export interface InputRef {
+	focus: () => void;
+}
 
 interface InputFieldProps {
 	type: string;
@@ -11,12 +15,20 @@ interface InputFieldProps {
 	rows?: number;
 }
 
-const InputField: React.FC<InputFieldProps> = (props) => {
+const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 	const [hasError, setHasError] = useState(false);
+	const inputFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
 	const inputFieldClasses = [
 		classes["input"],
 		hasError && classes["error"],
 	].join(" ");
+
+	const focus = () => {
+		inputFieldRef.current?.focus();
+	};
+
+	useImperativeHandle(ref, () => ({ focus }));
 
 	return (
 		<div className={classes.container}>
@@ -32,19 +44,25 @@ const InputField: React.FC<InputFieldProps> = (props) => {
 			</div>
 			{props.type === "textarea" && (
 				<textarea
+					ref={inputFieldRef}
 					id={props.id}
 					className={inputFieldClasses}
 					rows={props.rows}
 				/>
 			)}
 			{props.type !== "textarea" && (
-				<input id={props.id} className={inputFieldClasses} type={props.type} />
+				<input
+					ref={inputFieldRef}
+					id={props.id}
+					className={inputFieldClasses}
+					type={props.type}
+				/>
 			)}
 			{hasError && (
 				<span className={classes["error-message"]}>{props.errorMessage}</span>
 			)}
 		</div>
 	);
-};
+});
 
 export default InputField;

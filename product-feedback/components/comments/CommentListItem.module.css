@@ -2,6 +2,11 @@
 	display: flex;
 	gap: 3.2rem;
 }
+
+.reply-container {
+	margin-top: 1.5rem;
+}
+
 .avatar {
 	border-radius: 50%;
 }
@@ -11,6 +16,10 @@
 	flex-grow: 1;
 
 	gap: 1.7rem;
+}
+.replying-to {
+	color: var(--purple);
+	font-weight: 700;
 }
 .comment-header {
 	display: flex;
@@ -26,8 +35,20 @@
 .comment h4 {
 	color: var(--navy-light);
 	font-size: 1.4rem;
+	font-weight: 400;
 }
 
 .comment p {
 	color: var(--navy-light);
+	font-size: 1.5rem;
+}
+
+.comment-reply-form {
+	display: flex;
+	align-items: center;
+	gap: 1.6rem;
+}
+
+.comment-reply-form--show {
+	visibility: visible;
 }
