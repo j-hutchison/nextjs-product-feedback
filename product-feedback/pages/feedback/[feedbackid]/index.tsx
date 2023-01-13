@@ -1,14 +1,18 @@
 import React from "react";
+import { useRouter } from "next/router";
 
-import { Suggestion } from "../../components/suggestion/SuggestionList";
+import { Suggestion } from "../../../components/suggestion/SuggestionList";
 
-import CommentList from "../../components/comments/CommentList";
-import SuggestionListItem from "../../components/suggestion/SuggestionListItem";
-import GoBackLink from "../../components/ui/GoBackLink";
-import Button from "../../components/ui/Button";
+import { getSingleSuggestionById } from "../../../data/GetFeedbackService";
 
-import classes from "./FeedbackPage.module.css";
-import data from "../../data.json";
+import CommentList from "../../../components/comments/CommentList";
+import SuggestionListItem from "../../../components/suggestion/SuggestionListItem";
+import GoBackLink from "../../../components/ui/GoBackLink";
+import Button from "../../../components/ui/Button";
+
+import classes from "../FeedbackPage.module.css";
+import data from "../../../data.json";
+import AddComment from "../../../components/comments/AddComment";
 
 interface FeedbackPageProps {
 	data: Suggestion;
@@ -21,6 +25,7 @@ const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
 	}
 
 	const { id, title, description, upvotes, comments, tags } = data;
+	const handleEditBtnClick = () => {};
 
 	return (
 		<div className={classes["container"]}>
@@ -37,60 +42,41 @@ const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
 				tags={tags}
 			/>
 			<CommentList comments={comments} />
+			<AddComment />
 		</div>
 	);
 };
 
 export default FeedbackPage;
 
-// Generates `/posts/1` and `/posts/2`
+// Generates `/feedback/1` and `/feedback/2`
 export const getStaticPaths = async (): Promise<{
 	paths: string[];
 	fallback: boolean;
 }> => {
 	const feedbackIds = data.productRequests.map((productRequest) => {
-		return `/feedback/${productRequest.id}`;
+		const viewModePath = `/feedback/${productRequest.id}`;
+		return viewModePath;
 	});
 
 	console.log(feedbackIds);
 
 	return {
-		paths: feedbackIds,
+		paths: feedbackIds.flat(),
 		fallback: false, // can also be true or 'blocking'
 	};
 };
 
-// `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps = async ({
 	params,
 }: {
 	params: { feedbackid: string };
 }): Promise<{ props: any }> => {
 	const feedbackid = params.feedbackid;
-
-	let parsedSuggestionData = data.productRequests
-		.filter((feedback) => {
-			return feedback.id === +feedbackid;
-		})
-		.map((productRequest) => {
-			const thisSuggestion: Suggestion = {
-				id: productRequest.id,
-				upvotes: productRequest.upvotes,
-				title: productRequest.title,
-				description: productRequest.description,
-				tags: [productRequest.category],
-				comments: productRequest?.comments ? [...productRequest.comments] : [],
-			};
-
-			return thisSuggestion;
-		});
-
-	if (parsedSuggestionData.length < 0) {
-		parsedSuggestionData = [];
-	}
+	const feedbackObject = getSingleSuggestionById(feedbackid);
 
 	return {
 		// Passed to the page component as props
-		props: { data: { ...parsedSuggestionData[0] } },
+		props: { data: { ...feedbackObject[0] } },
 	};
 };

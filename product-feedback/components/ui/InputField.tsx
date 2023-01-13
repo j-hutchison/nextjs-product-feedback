@@ -9,10 +9,14 @@ interface InputFieldProps {
 	type: string;
 	errorMessage: string;
 	id: string;
+	placeholder?: string;
 	label?: string;
 	description?: string;
 	size?: "sm" | "md" | "lg";
 	rows?: number;
+	onChange?: (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => void;
 }
 
 const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
@@ -44,18 +48,22 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 			</div>
 			{props.type === "textarea" && (
 				<textarea
+					placeholder={props.placeholder}
 					ref={inputFieldRef}
 					id={props.id}
 					className={inputFieldClasses}
 					rows={props.rows}
+					onChange={props.onChange}
 				/>
 			)}
 			{props.type !== "textarea" && (
 				<input
+					placeholder={props.placeholder}
 					ref={inputFieldRef}
 					id={props.id}
 					className={inputFieldClasses}
 					type={props.type}
+					onChange={props.onChange}
 				/>
 			)}
 			{hasError && (

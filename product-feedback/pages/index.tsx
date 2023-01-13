@@ -8,6 +8,9 @@ import Sidebar from "../components/sidebar/Sidebar";
 import ControlPanel from "../components/controlpanel/ControlPanel";
 import SuggestionList from "../components/suggestion/SuggestionList";
 
+import { Suggestion } from "../components/suggestion/SuggestionList";
+import { getAllSuggestions } from "../data/GetFeedbackService";
+
 export interface SortOption {
 	field: string;
 	label: string;
@@ -15,7 +18,11 @@ export interface SortOption {
 	isSelected: boolean;
 }
 
-export default function Home() {
+interface HomePageProps {
+	data: Suggestion[];
+}
+
+export default function Home<HomePageProps>({ data }) {
 	const [listSort, setListSort] = useState<SortOption>({
 		field: "",
 		label: "",
@@ -77,9 +84,22 @@ export default function Home() {
 						sortOptions={controlPanelSortOptions}
 						handleListSort={handleListSort}
 					/>
-					<SuggestionList sort={listSort} />
+					<SuggestionList data={data} sort={listSort} />
 				</main>
 			</div>
 		</ContextProvider>
 	);
 }
+
+export const getStaticProps = async ({
+	params,
+}: {
+	params: {};
+}): Promise<{ props: any }> => {
+	const feedbackList = getAllSuggestions();
+
+	return {
+		// Passed to the page component as props
+		props: { data: feedbackList },
+	};
+};

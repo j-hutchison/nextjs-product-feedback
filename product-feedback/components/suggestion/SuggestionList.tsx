@@ -7,7 +7,6 @@ import SearchingImage from "../../icons/SearchingImage";
 
 import { ApplicationContext } from "../../context/ContextProvider";
 import { SortOption } from "../../pages";
-import data from "../../data.json";
 
 export interface Suggestion {
 	id: number;
@@ -38,6 +37,7 @@ export interface CommentReply {
 }
 
 interface SuggestionListProps {
+	data: Suggestion[];
 	sort: SortOption;
 }
 
@@ -51,26 +51,13 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 
 		setIsLoading(() => true);
 
-		if (!data) {
+		if (!props.data) {
 			return;
 		}
 
-		console.log("data.productRequests", data.productRequests);
+		console.log(props.data);
 
-		const parsedSuggestionData = data.productRequests.map((productRequest) => {
-			const thisSuggestion: Suggestion = {
-				id: productRequest.id,
-				upvotes: productRequest.upvotes,
-				title: productRequest.title,
-				description: productRequest.description,
-				tags: [productRequest.category],
-				comments: productRequest?.comments ? [...productRequest.comments] : [],
-			};
-
-			return thisSuggestion;
-		});
-
-		ctx.setSuggestions([...ctx.suggestions, ...parsedSuggestionData]);
+		ctx.setSuggestions([...ctx.suggestions, ...props.data]);
 
 		setIsLoading(() => false);
 

@@ -46,8 +46,7 @@ const CommentListItem: React.FC<CommentListItemProps> = ({
 	].join(" ");
 
 	const handleReplyLinkClick = (e: React.MouseEvent) => {
-		// e.preventDefault();
-
+		e.preventDefault();
 		setShowReplyComponent((prevValue) => (prevValue ? false : true));
 	};
 
@@ -73,7 +72,7 @@ const CommentListItem: React.FC<CommentListItemProps> = ({
 						<h4>{`@${username}`}</h4>
 					</div>
 					<a
-						href="#"
+						href="javascript:void(0)"
 						className={classes["reply-link"]}
 						onClick={handleReplyLinkClick}
 					>

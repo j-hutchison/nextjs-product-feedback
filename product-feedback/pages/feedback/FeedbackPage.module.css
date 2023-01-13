@@ -8,7 +8,7 @@
 
 	max-width: 73rem;
 	margin-top: 9.2rem;
-	margin-bottom: 2.4rem;
+	margin-bottom: 12.4rem;
 
 	background-color: var(--bg-grey);
 }
@@ -17,4 +17,20 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+	.container {
+		padding-left: 3.9rem;
+		padding-right: 3.9rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
+	.container {
+		margin-top: 2.4rem;
+
+		padding-left: 2.4rem;
+		padding-right: 2.4rem;
+	}
 }
