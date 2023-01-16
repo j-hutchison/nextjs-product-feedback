@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useRouter } from "next/router";
+import { useNextRouter } from "../../helpers/NavigationHelpers";
 
 import classes from "./ControlPanel.module.css";
 
@@ -17,7 +17,7 @@ interface ControlPanelProps {
 
 const ControlPanel: React.FC<ControlPanelProps> = (props) => {
 	const ctx = useContext(ApplicationContext);
-	const router = useRouter();
+	const router = useNextRouter();
 
 	const addSuggestion = () => {
 		// const newSuggestion: Suggestion = {

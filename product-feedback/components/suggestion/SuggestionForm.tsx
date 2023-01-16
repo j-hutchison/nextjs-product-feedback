@@ -1,11 +1,15 @@
 import React from "react";
 import { Suggestion } from "./SuggestionList";
+import lists from "../../lists.json";
 
+import InputFieldLabel from "../ui/InputFieldLabel";
 import InputField from "../ui/InputField";
 import Button from "../ui/Button";
 import GoBackLink from "../ui/GoBackLink";
 
 import classes from "./SuggestionForm.module.css";
+import { useNextRouter } from "../../helpers/NavigationHelpers";
+import Dropdown from "../ui/Dropdown";
 
 interface SuggestionFormProps {
 	mode: "create" | "edit" | "view";
@@ -15,9 +19,15 @@ interface SuggestionFormProps {
 }
 
 const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
+	const router = useNextRouter();
+
 	const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		console.log("Submitted Form!");
+	};
+
+	const handleCancelBtnClick = (e: React.MouseEvent) => {
+		router.back();
 	};
 
 	return (
@@ -32,25 +42,56 @@ const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
 					label="Feedback Title"
 					description="Add a short, descriptive headline"
 					errorMessage="Missing"
+					value={props.suggestion?.title}
 				/>
-				<InputField
-					id="feedback_category"
-					type="text"
-					label="Category"
-					description="Choose a category for your feedback"
-					errorMessage="Missing"
-				/>
+				<div>
+					<InputFieldLabel
+						htmlFor="feedback_category"
+						label="Category"
+						description="Choose a category for your feedback"
+					/>
+					<Dropdown
+						id="feedback_category"
+						value={props.suggestion?.tags[0]}
+						options={lists.category}
+					/>
+				</div>
+				{props.mode === "edit" && (
+					<div>
+						<InputFieldLabel
+							htmlFor="feedback_status"
+							label="Update Status"
+							description="Change feedback state"
+						/>
+						<Dropdown
+							id="feedback_status"
+							value={props?.suggestion?.status}
+							options={lists.status}
+						/>
+					</div>
+				)}
 				<InputField
 					id="feedback_detail"
 					type="textarea"
 					label="Feedback Detail"
 					description="Include any specific comments on what should be improved, added, etc."
 					errorMessage="Missing"
-					rows={4}
+					rows={3}
+					value={props.suggestion?.description}
 				/>
 				<div className={classes["form-btn-panel"]}>
-					<Button color="grey">Cancel</Button>
-					<Button color="purple">Add Feedback</Button>
+					{props.mode === "edit" && (
+						<div className={classes["form-btn-panel--left"]}>
+							<Button color="red">Delete</Button>
+						</div>
+					)}
+
+					<div className={classes["form-btn-panel--right"]}>
+						<Button color="grey" onClick={handleCancelBtnClick}>
+							Cancel
+						</Button>
+						<Button color="purple">Add Feedback</Button>
+					</div>
 				</div>
 			</form>
 		</div>

@@ -5,7 +5,7 @@ interface ButtonProps {
 	children: ReactNode;
 	color: string;
 	iconName?: string;
-	onClick?: () => void;
+	onClick?: (e: React.MouseEvent) => void;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {

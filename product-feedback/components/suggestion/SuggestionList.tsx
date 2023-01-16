@@ -14,6 +14,7 @@ export interface Suggestion {
 	title: string;
 	description: string;
 	tags: string[];
+	status: string;
 	comments: Comment[];
 }
 

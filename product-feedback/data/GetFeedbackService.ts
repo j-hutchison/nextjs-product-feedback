@@ -14,6 +14,7 @@ export const getSingleSuggestionById = (feedbackid: string) => {
 				title: productRequest.title,
 				description: productRequest.description,
 				tags: [productRequest.category],
+				status: productRequest.status,
 				comments: productRequest?.comments ? [...productRequest.comments] : [],
 			};
 
@@ -35,6 +36,7 @@ export const getAllSuggestions = () => {
 			title: productRequest.title,
 			description: productRequest.description,
 			tags: [productRequest.category],
+			status: productRequest.status,
 			comments: productRequest?.comments ? [...productRequest.comments] : [],
 		};
 

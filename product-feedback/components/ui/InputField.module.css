@@ -19,6 +19,8 @@ textarea.input {
 	padding: 1.3rem 2.4rem;
 	border: none;
 
+	font-size: 1.5rem;
+
 	background-color: var(--grey-light);
 	color: var(--navy);
 }
@@ -26,20 +28,6 @@ textarea.input {
 .input:focus {
 	border: 1px solid var(--blue);
 	outline: none;
-}
-
-.input-labels {
-}
-
-.input-label {
-	color: var(--navy);
-	font-size: 1.4rem;
-	font-weight: 700;
-	line-height: 2rem;
-}
-.input-description {
-	color: var(--navy-light);
-	font-size: 1.4rem;
 }
 
 .error,

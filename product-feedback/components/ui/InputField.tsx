@@ -1,4 +1,6 @@
 import React, { useState, useImperativeHandle, useRef } from "react";
+import InputFieldLabel from "./InputFieldLabel";
+
 import classes from "./InputField.module.css";
 
 export interface InputRef {
@@ -14,14 +16,18 @@ interface InputFieldProps {
 	description?: string;
 	size?: "sm" | "md" | "lg";
 	rows?: number;
-	onChange?: (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => void;
+	value?: string;
 }
 
 const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
+	const [fieldValue, setFieldValue] = useState(props?.value || "");
 	const [hasError, setHasError] = useState(false);
 	const inputFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
+	const onInputFieldChange = (e: React.ChangeEvent) => {
+		console.log(e.target.value);
+		setFieldValue(() => e.target.value);
+	};
 
 	const inputFieldClasses = [
 		classes["input"],
@@ -36,16 +42,11 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 
 	return (
 		<div className={classes.container}>
-			<div className={classes["input-labels"]}>
-				{props.label && (
-					<label className={classes["input-label"]} htmlFor={props.id}>
-						{props.label}
-					</label>
-				)}
-				{props.description && (
-					<p className={classes["input-description"]}>{props.description}</p>
-				)}
-			</div>
+			<InputFieldLabel
+				id={props.id}
+				label={props.label}
+				description={props.description}
+			/>
 			{props.type === "textarea" && (
 				<textarea
 					placeholder={props.placeholder}
@@ -53,7 +54,8 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 					id={props.id}
 					className={inputFieldClasses}
 					rows={props.rows}
-					onChange={props.onChange}
+					value={fieldValue}
+					onChange={onInputFieldChange}
 				/>
 			)}
 			{props.type !== "textarea" && (
@@ -63,7 +65,8 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 					id={props.id}
 					className={inputFieldClasses}
 					type={props.type}
-					onChange={props.onChange}
+					value={fieldValue}
+					onChange={onInputFieldChange}
 				/>
 			)}
 			{hasError && (

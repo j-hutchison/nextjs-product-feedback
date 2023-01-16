@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { useNextRouter } from "../../../helpers/NavigationHelpers";
 
 import { Suggestion } from "../../../components/suggestion/SuggestionList";
 
@@ -19,19 +19,24 @@ interface FeedbackPageProps {
 }
 
 const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
+	const router = useNextRouter();
 	console.log(data);
 	if (!data) {
 		return <p>Error retrieving data</p>;
 	}
 
 	const { id, title, description, upvotes, comments, tags } = data;
-	const handleEditBtnClick = () => {};
+	const handleEditBtnClick = () => {
+		router.push(`${id}/edit`);
+	};
 
 	return (
 		<div className={classes["container"]}>
 			<div className={classes["btn-panel"]}>
 				<GoBackLink />
-				<Button color="blue">Edit Feedback</Button>
+				<Button color="blue" onClick={handleEditBtnClick}>
+					Edit Feedback
+				</Button>
 			</div>
 			<SuggestionListItem
 				id={id}

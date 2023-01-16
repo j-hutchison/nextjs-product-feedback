@@ -57,7 +57,12 @@
 .form-btn-panel {
 	display: flex;
 	gap: 1.6rem;
-	justify-content: flex-end;
+	justify-content: space-between;
 
 	margin-top: 0.8rem;
+}
+
+.form-btn-panel--right {
+	display: flex;
+	gap: 1.6rem;
 }

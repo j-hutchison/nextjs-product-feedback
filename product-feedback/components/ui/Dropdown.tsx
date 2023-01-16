@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import classes from "./Dropdown.module.css";
 
+import ArrowIcon from "../../icons/ArrowIcon";
+
 interface DropdownProps {
+	id: string;
 	options: string[];
 	title?: string;
 	description?: string;
+	value?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
-	const [selectedOption, setSelectedOption] = useState(props.options[0]);
+	const [selectedOption, setSelectedOption] = useState(
+		props?.value || props.options[0]
+	);
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	const dropdownClasses = [
@@ -48,10 +54,14 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 
 	return (
 		<div className={dropdownClasses} onBlur={handleBlur}>
-			<button className={classes.btn} onClick={handleDropdownButtonClick}>
+			<button
+				id={props.id}
+				className={classes.btn}
+				onClick={handleDropdownButtonClick}
+			>
 				<span className={classes["selected-option"]}>{selectedOption}</span>
 				<span className={classes["dropdown-icon"]}>
-					{showDropdown ? "-" : "+"}
+					{showDropdown ? <ArrowIcon type="up" /> : <ArrowIcon type="down" />}
 				</span>
 			</button>
 			{showDropdown && (

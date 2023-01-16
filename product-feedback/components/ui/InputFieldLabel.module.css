@@ -1,0 +1,13 @@
+.input-labels {
+}
+
+.input-label {
+	color: var(--navy);
+	font-size: 1.4rem;
+	font-weight: 700;
+	line-height: 2rem;
+}
+.input-description {
+	color: var(--navy-light);
+	font-size: 1.4rem;
+}
