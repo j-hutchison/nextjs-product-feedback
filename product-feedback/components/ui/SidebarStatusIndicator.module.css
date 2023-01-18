@@ -1,3 +1,10 @@
+@value suggestion-list-item--tile from "../suggestion/SuggestionListItem.module.css";
+
+.suggestion-list-item--tile .status-status {
+	text-transform: capitalize;
+	color: var(--navy-light);
+}
+
 .status-item {
 	display: flex;
 	justify-content: space-between;
@@ -21,4 +28,20 @@
 
 .orange {
 	background-color: var(--orange);
+}
+
+.blue {
+	background-color: var(--blue-light);
+}
+.purple {
+	background-color: var(--purple);
+}
+
+@media only screen and (max-width: 768px) {
+	.suggestion-list-item--tile .status-status {
+		font-size: 1.3rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
 }

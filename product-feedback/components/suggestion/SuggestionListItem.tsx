@@ -8,6 +8,7 @@ import CommentsIcon from "../../icons/CommentsIcon";
 
 import { Suggestion } from "./SuggestionList";
 import { getColorFromStatus } from "../../data/GetListDataService";
+import SidebarStatusIndicator from "../ui/SidebarStatusIndicator";
 
 export type Style = {
 	name: "tile" | "listitem";
@@ -19,14 +20,17 @@ interface SuggestionListItemProps {
 }
 
 const SuggestionListItem: React.FC<SuggestionListItemProps> = (props) => {
+	const isGridTile = props.styles?.name === "tile";
+
 	const statusColor = props.styles
 		? getColorFromStatus(props.suggestion.status)
 		: "";
 
-	const tileStyles =
-		props.styles?.name === "tile"
-			? [classes["suggestion-list-item--tile"], classes[statusColor]].join(" ")
-			: "";
+	console.log(statusColor);
+
+	const tileStyles = isGridTile
+		? [classes["suggestion-list-item--tile"], classes[statusColor]].join(" ")
+		: "";
 
 	const suggestionListItemClasses = [
 		classes["suggestion-list-item"],
@@ -35,6 +39,12 @@ const SuggestionListItem: React.FC<SuggestionListItemProps> = (props) => {
 
 	return (
 		<div className={suggestionListItemClasses}>
+			{isGridTile && (
+				<SidebarStatusIndicator
+					color={statusColor}
+					text={props.suggestion.status}
+				/>
+			)}
 			<VoteTag value={props.suggestion.upvotes}></VoteTag>
 			<div className={classes["suggestion-list-item-content"]}>
 				<Link

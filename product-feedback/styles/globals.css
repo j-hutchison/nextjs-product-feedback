@@ -128,7 +128,8 @@ div.container {
 		flex-direction: column;
 		gap: 4rem;
 
-		width: 100vw;
+		width: 100%;
+
 		padding: 5.6rem 3.9rem;
 	}
 }

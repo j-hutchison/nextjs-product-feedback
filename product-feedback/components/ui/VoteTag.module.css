@@ -1,6 +1,8 @@
+@value suggestion-list-item--tile from "../suggestion/SuggestionListItem.module.css";
+
 .vote-tag {
-	width: 4rem;
 	height: 5.3rem;
+	min-width: 4rem;
 	color: var(--navy);
 	font-weight: 700;
 	font-size: 1.3rem;
@@ -14,6 +16,29 @@
 	background-color: var(--tag-grey);
 	padding: 1rem 0.8rem;
 	border-radius: 1rem;
+}
+
+.suggestion-list-item--tile .vote-tag {
+	position: absolute;
+	bottom: 3.2rem;
+	/* transform: translateY(-10%); */
+
+	align-items: center;
+
+	min-width: 7rem;
+	height: auto;
+
+	flex-direction: row;
+}
+
+.suggestion-list-item--tile .icon {
+	height: unset;
+}
+
+.suggestion-list-item--tile .number {
+	text-align: center;
+	font-size: 1.3rem;
+	height: unset;
 }
 
 .vote-tag:hover {
@@ -41,4 +66,13 @@
 .number {
 	text-align: center;
 	height: 1.9rem;
+}
+
+@media only screen and (max-width: 768px) {
+	.suggestion-list-item--tile .vote-tag {
+		bottom: 2.4rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
 }

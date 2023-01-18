@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./SidebarStatusIndicator.module.css";
 
 interface SidebarStatusProps {
-	count: number;
+	count?: number;
 	text: string;
 	color?: string;
 }

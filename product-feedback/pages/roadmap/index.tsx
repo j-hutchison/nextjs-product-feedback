@@ -33,51 +33,51 @@ const Roadmap: React.FC<RoadmapProps> = (props) => {
 				</Button>
 			</div>
 			<div className={classes["roadmap-board"]}>
-				{statusList.map((status, statusIndex) => {
-					return (
-						<div
-							className={classes["roadmap-column"]}
-							key={statusIndex}
-							style={{ gridColumn: `${statusIndex + 1} / ${statusIndex + 2}` }}
-						>
-							{props.data
-								.filter(
-									(suggestion) =>
-										suggestion.status !== "suggestion" &&
-										suggestion.status === status.name
-								)
-								.map((suggestion, suggestionId, results) => {
-									if (suggestionId === 0) {
-										return (
-											<>
-												<div className={classes["column-header"]}>
-													<h2>
-														{status.name} ({results.length})
-													</h2>
-													<p className={classes.definition}>
-														{status.definition}
-													</p>
-												</div>
+				{statusList
+					.filter((status) => status.name !== "suggestion")
+					.map((status, statusIndex) => {
+						return (
+							<div
+								className={classes["roadmap-column"]}
+								key={statusIndex}
+								style={{
+									gridColumn: `${statusIndex + 1} / ${statusIndex + 2}`,
+								}}
+							>
+								{props.data
+									.filter((suggestion) => suggestion.status === status.name)
+									.map((suggestion, suggestionId, results) => {
+										if (suggestionId === 0) {
+											return (
+												<>
+													<div className={classes["column-header"]}>
+														<h2>
+															{status.name} ({results.length})
+														</h2>
+														<p className={classes.definition}>
+															{status.definition}
+														</p>
+													</div>
+													<SuggestionListItem
+														key={suggestion.id}
+														suggestion={suggestion}
+														styles={tile}
+													></SuggestionListItem>
+												</>
+											);
+										} else {
+											return (
 												<SuggestionListItem
 													key={suggestion.id}
 													suggestion={suggestion}
 													styles={tile}
 												></SuggestionListItem>
-											</>
-										);
-									} else {
-										return (
-											<SuggestionListItem
-												key={suggestion.id}
-												suggestion={suggestion}
-												styles={tile}
-											></SuggestionListItem>
-										);
-									}
-								})}
-						</div>
-					);
-				})}
+											);
+										}
+									})}
+							</div>
+						);
+					})}
 			</div>
 		</div>
 	);

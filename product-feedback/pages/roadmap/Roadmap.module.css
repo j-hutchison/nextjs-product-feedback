@@ -4,6 +4,7 @@ div.container {
 	gap: 3rem;
 
 	padding-top: 9.4rem;
+	padding-bottom: 18rem;
 	margin: 0 auto;
 	width: 85vw;
 }
@@ -65,4 +66,42 @@ div.container {
 }
 
 .roadmap-cell {
+}
+
+@media only screen and (max-width: 768px) {
+	div.container {
+		margin: 5.6rem 3.9rem 9.5rem 3.9rem;
+
+		padding: unset;
+		width: calc(100vw - 7.8rem);
+	}
+
+	.roadmap-board {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+	}
+
+	.roadmap-banner {
+		width: 100%;
+
+		padding: 2.7rem 3.2rem 2.7rem 3.2rem;
+		border-radius: 10px;
+		color: #fff;
+	}
+
+	.roadmap-banner h1 {
+		font-size: 2.4rem;
+	}
+
+	.column-header h2 {
+		font-size: 1.4rem;
+	}
+
+	.column-header .definition {
+		font-size: 1.4rem;
+	}
+}
+
+@media only screen and (max-width: 580px) {
 }
