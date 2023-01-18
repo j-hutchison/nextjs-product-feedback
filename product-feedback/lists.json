@@ -1,4 +1,39 @@
 {
-	"category": ["all", "UI", "UX", "enhancement", "bug", "feature"],
-	"status": ["suggestion", "planned", "in progress"]
+	"category": [
+		{ "index": 0, "name": "all", "default": true },
+		{ "index": 1, "name": "UI", "default": false },
+		{ "index": 2, "name": "UX", "default": false },
+		{ "index": 3, "name": "enhancement", "default": false },
+		{ "index": 4, "name": "bug", "default": false },
+		{ "index": 5, "name": "feature", "default": false }
+	],
+	"status": [
+		{
+			"index": 0,
+			"name": "suggestion",
+			"default": true,
+			"definition": "Items in backlog, not yet reviewed or approved"
+		},
+		{
+			"index": 1,
+			"name": "planned",
+			"default": false,
+			"definition": "Ideas prioritized for research",
+			"color": "orange"
+		},
+		{
+			"index": 2,
+			"name": "in-progress",
+			"default": false,
+			"definition": "Currently being developed",
+			"color": "purple"
+		},
+		{
+			"index": 3,
+			"name": "live",
+			"default": false,
+			"definition": "Released features",
+			"color": "blue"
+		}
+	]
 }

@@ -4,15 +4,22 @@ import classes from "./Sidebar.module.css";
 import Tag from "../ui/Tag";
 import SidebarStatusIndicator from "../ui/SidebarStatusIndicator";
 
+import { getCategoryList } from "../../data/GetListDataService";
+
 import LogoBanner from "./LogoBanner";
 
-interface SidebarProps {}
+interface SidebarProps {
+	defaultTag: string;
+	onClickFilter: (filterValue: string) => void;
+}
 
 const Sidebar: React.FC<SidebarProps> = (props) => {
 	const [showSidebar, setShowSidebar] = useState(false);
+	const categoryList = getCategoryList();
 
-	const handleTagClick = () => {
-		console.log("Hello!");
+	const handleTagClick = (e: React.MouseEvent) => {
+		console.log(e.currentTarget.innerHTML);
+		props.onClickFilter(e.currentTarget.innerHTML);
 	};
 
 	const handleMenuIconClick = () => {
@@ -31,12 +38,16 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 			<div className={sidebarClasses}>
 				<div className={classes.tags}>
 					<ul className={classes["tag-list"]}>
-						<Tag onClick={handleTagClick} text="All" isActive={true}></Tag>
-						<Tag onClick={handleTagClick} text="UI"></Tag>
-						<Tag onClick={handleTagClick} text="UX"></Tag>
-						<Tag onClick={handleTagClick} text="Enhancement"></Tag>
-						<Tag onClick={handleTagClick} text="Bug"></Tag>
-						<Tag onClick={handleTagClick} text="Feature"></Tag>
+						{categoryList.map((category, categoryId) => (
+							<Tag
+								key={categoryId}
+								onClick={handleTagClick}
+								text={category.name}
+								isActive={
+									category.name === props.defaultTag || category.default
+								}
+							></Tag>
+						))}
 					</ul>
 				</div>
 				<div className={classes.roadmap}>

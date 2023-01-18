@@ -1,8 +1,5 @@
-import React, { useContext, useState } from "react";
-import {
-	ContextProvider,
-	ApplicationContext,
-} from "../context/ContextProvider";
+import React, { useState } from "react";
+import { ContextProvider } from "../context/ContextProvider";
 
 import Sidebar from "../components/sidebar/Sidebar";
 import ControlPanel from "../components/controlpanel/ControlPanel";
@@ -10,6 +7,7 @@ import SuggestionList from "../components/suggestion/SuggestionList";
 
 import { Suggestion } from "../components/suggestion/SuggestionList";
 import { getAllSuggestions } from "../data/GetFeedbackService";
+import { getDefaultCategory } from "../data/GetListDataService";
 
 export interface SortOption {
 	field: string;
@@ -30,6 +28,12 @@ export default function Home<HomePageProps>({ data }) {
 		isSelected: false,
 	});
 
+	const [listFilter, setListFilter] = useState(
+		getDefaultCategory()[0].name || ""
+	);
+
+	const [numFilterResults, setNumFilterResults] = useState(0);
+
 	const handleListSort = (options: SortOption) => {
 		setListSort({
 			field: options.field,
@@ -37,6 +41,14 @@ export default function Home<HomePageProps>({ data }) {
 			type: options.type,
 			isSelected: options.isSelected,
 		});
+	};
+
+	const handleListFilter = (filterValue: string) => {
+		setListFilter(() => filterValue);
+	};
+
+	const handleNumberFilterResults = (numFilterResults: number) => {
+		setNumFilterResults(() => numFilterResults);
 	};
 
 	//TODO: REMOVE 'ISSELECTED'
@@ -70,21 +82,22 @@ export default function Home<HomePageProps>({ data }) {
 	return (
 		<ContextProvider>
 			<div className="container">
-				{/* <Button color="navy" hasIcon={true}>
-				<span>Button 4</span>
-			</Button>
-			<VoteTag value={80}></VoteTag> */}
-				{/* <Tag text="UX"></Tag> */}
-				{/* <InputField type="text" errorMessage="Can't be empty" /> */}
-				{/* <Dropdown options={sortOptions} /> */}
-				{/* <CustomDropdown options={dropDownOptions} /> */}
-				<Sidebar></Sidebar>
+				<Sidebar
+					onClickFilter={handleListFilter}
+					defaultTag={listFilter}
+				></Sidebar>
 				<main className="flex-column">
 					<ControlPanel
 						sortOptions={controlPanelSortOptions}
 						handleListSort={handleListSort}
+						numFilterResults={numFilterResults}
 					/>
-					<SuggestionList data={data} sort={listSort} />
+					<SuggestionList
+						data={data}
+						sort={listSort}
+						filter={listFilter}
+						updateNumFilterResults={handleNumberFilterResults}
+					/>
 				</main>
 			</div>
 		</ContextProvider>

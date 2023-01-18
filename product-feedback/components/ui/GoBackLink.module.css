@@ -3,14 +3,17 @@
 	gap: 1.5rem;
 	align-items: center;
 }
-
 .navigate-back a {
-	color: var(--navy-light);
 	text-decoration: none;
 	font-weight: 700;
+	color: var(--navy-light);
 }
 
 .navigate-back a:hover,
 .navigate-back a:active {
 	text-decoration: underline;
+}
+
+.navigate-back--white a {
+	color: #fff;
 }

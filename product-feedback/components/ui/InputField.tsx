@@ -17,6 +17,9 @@ interface InputFieldProps {
 	size?: "sm" | "md" | "lg";
 	rows?: number;
 	value?: string;
+	onChange?: (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => void;
 }
 
 const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
@@ -27,6 +30,10 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 	const onInputFieldChange = (e: React.ChangeEvent) => {
 		console.log(e.target.value);
 		setFieldValue(() => e.target.value);
+
+		if (props?.onChange) {
+			props.onChange(e);
+		}
 	};
 
 	const inputFieldClasses = [

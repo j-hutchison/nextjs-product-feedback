@@ -7,12 +7,13 @@ import ButtonDropdown from "../ui/ButtonDropdown";
 import Button from "../ui/Button";
 
 import { ApplicationContext } from "../../context/ContextProvider";
-import { Suggestion } from "../suggestion/SuggestionList";
 import { SortOption } from "../../pages";
+import LightBulbIcon from "../../icons/LightBulb";
 
 interface ControlPanelProps {
 	sortOptions: SortOption[];
 	handleListSort: (sortObject: SortOption) => void;
+	numFilterResults: number;
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = (props) => {
@@ -20,17 +21,6 @@ const ControlPanel: React.FC<ControlPanelProps> = (props) => {
 	const router = useNextRouter();
 
 	const addSuggestion = () => {
-		// const newSuggestion: Suggestion = {
-		// 	id: 90,
-		// 	upvotes: 5,
-		// 	title: "Test Add",
-		// 	description: "Test Description",
-		// 	tags: ["UI"],
-		// 	comments: [],
-		// };
-
-		// ctx.setSuggestions([...ctx.suggestions, newSuggestion]);
-
 		console.log(ctx);
 		router.push("/feedback/create");
 	};
@@ -47,8 +37,8 @@ const ControlPanel: React.FC<ControlPanelProps> = (props) => {
 		<div className={classes["control-panel"]}>
 			<div className={classes["control-panel-options"]}>
 				<div className={classes["total-suggestions"]}>
-					<span>💡</span>
-					<span>{ctx.suggestions.length} Suggestions</span>
+					<LightBulbIcon />
+					<span>{props.numFilterResults} Suggestions</span>
 				</div>
 				<ButtonDropdown
 					label="Sort by"

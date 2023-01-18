@@ -3,9 +3,18 @@ import classes from "./Dropdown.module.css";
 
 import ArrowIcon from "../../icons/ArrowIcon";
 
+import { getDefaultCategory } from "../../data/GetListDataService";
+
+export interface Category {
+	index: number;
+	name: string;
+	default: boolean;
+	definition: string;
+}
+
 interface DropdownProps {
 	id: string;
-	options: string[];
+	options: Category[];
 	title?: string;
 	description?: string;
 	value?: string;
@@ -13,7 +22,7 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = (props) => {
 	const [selectedOption, setSelectedOption] = useState(
-		props?.value || props.options[0]
+		props?.value || getDefaultCategory()[0].name || ""
 	);
 	const [showDropdown, setShowDropdown] = useState(false);
 
@@ -67,7 +76,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 			{showDropdown && (
 				<div className={classes["dropdown-list"]}>
 					{props.options.map((listItem, index) => {
-						if (listItem === selectedOption) return;
+						if (listItem.name === selectedOption) return;
 
 						return (
 							<div
@@ -75,7 +84,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 								className={classes["dropdown-option"]}
 								onMouseDown={handleOptionClick}
 							>
-								{listItem}
+								{listItem.name}
 							</div>
 						);
 					})}

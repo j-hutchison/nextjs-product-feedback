@@ -7,21 +7,47 @@ import Tag from "../ui/Tag";
 import CommentsIcon from "../../icons/CommentsIcon";
 
 import { Suggestion } from "./SuggestionList";
+import { getColorFromStatus } from "../../data/GetListDataService";
 
-const SuggestionListItem: React.FC<Suggestion> = (props) => {
+export type Style = {
+	name: "tile" | "listitem";
+};
+
+interface SuggestionListItemProps {
+	suggestion: Suggestion;
+	styles?: Style;
+}
+
+const SuggestionListItem: React.FC<SuggestionListItemProps> = (props) => {
+	const statusColor = props.styles
+		? getColorFromStatus(props.suggestion.status)
+		: "";
+
+	const tileStyles =
+		props.styles?.name === "tile"
+			? [classes["suggestion-list-item--tile"], classes[statusColor]].join(" ")
+			: "";
+
+	const suggestionListItemClasses = [
+		classes["suggestion-list-item"],
+		tileStyles,
+	].join(" ");
+
 	return (
-		<div className={classes["suggestion-list-item"]}>
-			<VoteTag value={props.upvotes}></VoteTag>
+		<div className={suggestionListItemClasses}>
+			<VoteTag value={props.suggestion.upvotes}></VoteTag>
 			<div className={classes["suggestion-list-item-content"]}>
 				<Link
-					href={`feedback/${props.id}`}
+					href={`/feedback/${props.suggestion.id}`}
 					className={classes["suggestion-title"]}
 				>
-					{props.title}
+					{props.suggestion.title}
 				</Link>
-				<p className={classes["suggestion-description"]}>{props.description}</p>
+				<p className={classes["suggestion-description"]}>
+					{props.suggestion.description}
+				</p>
 				<ul className={classes["suggestion-tag-list"]}>
-					{props.tags.map((tag, id) => (
+					{props.suggestion.tags.map((tag, id) => (
 						<Tag
 							key={id}
 							text={tag}
@@ -33,7 +59,7 @@ const SuggestionListItem: React.FC<Suggestion> = (props) => {
 			<div className={classes.comments}>
 				<CommentsIcon />
 				<span className={classes["suggestion-comments-count"]}>
-					{props.comments.length}
+					{props.suggestion.comments.length}
 				</span>
 			</div>
 		</div>

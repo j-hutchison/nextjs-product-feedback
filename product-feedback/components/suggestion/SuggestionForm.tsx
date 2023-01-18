@@ -1,15 +1,16 @@
 import React from "react";
 import { Suggestion } from "./SuggestionList";
-import lists from "../../lists.json";
 
+import Button from "../ui/Button";
+import Dropdown from "../ui/Dropdown";
+import GoBackLink from "../ui/GoBackLink";
 import InputFieldLabel from "../ui/InputFieldLabel";
 import InputField from "../ui/InputField";
-import Button from "../ui/Button";
-import GoBackLink from "../ui/GoBackLink";
 
 import classes from "./SuggestionForm.module.css";
+
 import { useNextRouter } from "../../helpers/NavigationHelpers";
-import Dropdown from "../ui/Dropdown";
+import { getCategoryList, getStatusList } from "../../data/GetListDataService";
 
 interface SuggestionFormProps {
 	mode: "create" | "edit" | "view";
@@ -20,6 +21,8 @@ interface SuggestionFormProps {
 
 const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
 	const router = useNextRouter();
+	const categoryList = getCategoryList();
+	const statusList = getStatusList();
 
 	const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -53,7 +56,7 @@ const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
 					<Dropdown
 						id="feedback_category"
 						value={props.suggestion?.tags[0]}
-						options={lists.category}
+						options={categoryList}
 					/>
 				</div>
 				{props.mode === "edit" && (
@@ -66,7 +69,7 @@ const SuggestionForm: React.FC<SuggestionFormProps> = (props) => {
 						<Dropdown
 							id="feedback_status"
 							value={props?.suggestion?.status}
-							options={lists.status}
+							options={statusList}
 						/>
 					</div>
 				)}

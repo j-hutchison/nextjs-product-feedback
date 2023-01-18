@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./SuggestionList.module.css";
 
 import Button from "../ui/Button";
 import SuggestionListItem from "./SuggestionListItem";
 import SearchingImage from "../../icons/SearchingImage";
 
-import { ApplicationContext } from "../../context/ContextProvider";
 import { SortOption } from "../../pages";
 
 export interface Suggestion {
@@ -40,30 +39,36 @@ export interface CommentReply {
 interface SuggestionListProps {
 	data: Suggestion[];
 	sort: SortOption;
+	filter: string;
+	updateNumFilterResults: (value: number) => void;
 }
 
 const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
-
-	const ctx = useContext(ApplicationContext);
+	const [filterHasResults, setFilterHasResults] = useState(true);
+	const [suggestionList, setSuggestionList] = useState<Suggestion[]>([]);
 
 	useEffect(() => {
-		console.log(ctx);
-
 		setIsLoading(() => true);
 
 		if (!props.data) {
 			return;
 		}
 
-		console.log(props.data);
-
-		ctx.setSuggestions([...ctx.suggestions, ...props.data]);
+		setSuggestionList([...props.data]);
 
 		setIsLoading(() => false);
-
-		console.log(ctx);
 	}, []);
+
+	useEffect(() => {
+		const checkFilterHasResults = props.data.filter((suggestion) =>
+			props.filter !== "all" ? suggestion.tags[0] === props.filter : suggestion
+		);
+
+		props.updateNumFilterResults(checkFilterHasResults.length);
+
+		setFilterHasResults(checkFilterHasResults.length > 0);
+	}, [props.filter]);
 
 	/** Component to be displayed when no suggestions / data passed into the component */
 	const componentNoSuggestions = (
@@ -88,8 +93,14 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 		<div className={classes["suggestion-list"]}>
 			{isLoading && <p>Loading...</p>}
 			{!isLoading &&
-				ctx.suggestions.length > 0 &&
-				ctx.suggestions
+				filterHasResults &&
+				suggestionList.length > 0 &&
+				suggestionList
+					.filter((suggestion) =>
+						props.filter !== "all"
+							? suggestion.tags[0] === props.filter
+							: suggestion
+					)
 					.sort((suggestion1, suggestion2) => {
 						if (props.sort.field === "upvotes") {
 							if (props.sort.type === "asc") {
@@ -111,16 +122,11 @@ const SuggestionList: React.FC<SuggestionListProps> = (props) => {
 						return (
 							<SuggestionListItem
 								key={suggestion.id}
-								id={suggestion.id}
-								upvotes={suggestion.upvotes}
-								title={suggestion.title}
-								description={suggestion.description}
-								tags={suggestion.tags}
-								comments={suggestion.comments}
+								suggestion={suggestion}
 							></SuggestionListItem>
 						);
 					})}
-			{!isLoading && ctx.suggestions.length === 0 && componentNoSuggestions}
+			{!isLoading && !filterHasResults && componentNoSuggestions}
 		</div>
 	);
 };

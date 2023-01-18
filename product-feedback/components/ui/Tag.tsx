@@ -3,24 +3,27 @@ import classes from "./Tag.module.css";
 
 interface TagProps {
 	text: string;
-	onClick: () => void;
+	onClick: (e: React.MouseEvent) => void;
 	isActive?: boolean;
 }
 
 const Tag: React.FC<TagProps> = (props) => {
 	const [isActive, setIsActive] = useState(props.isActive);
 
-	const tagClasses = [classes.tag, isActive && classes.active].join(" ");
+	const tagClasses = [
+		classes.tag,
+		classes.text,
+		isActive && classes.active,
+	].join(" ");
 
 	const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
-		props.onClick();
+		props.onClick(event);
 	};
 
 	return (
-		<li className={tagClasses}>
-			<span className={classes.text} onClick={handleClick}>
-				{props.text}
-			</span>
+		<li className={tagClasses} onClick={handleClick}>
+			{/* <span className={classes.text}>{props.text}</span> */}
+			{props.text}
 		</li>
 	);
 };

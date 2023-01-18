@@ -25,7 +25,8 @@ const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
 		return <p>Error retrieving data</p>;
 	}
 
-	const { id, title, description, upvotes, comments, tags } = data;
+	const id = data.id;
+	const comments = data.comments;
 	const handleEditBtnClick = () => {
 		router.push(`${id}/edit`);
 	};
@@ -38,14 +39,7 @@ const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
 					Edit Feedback
 				</Button>
 			</div>
-			<SuggestionListItem
-				id={id}
-				title={title}
-				description={description}
-				upvotes={upvotes}
-				comments={comments}
-				tags={tags}
-			/>
+			<SuggestionListItem id={id} suggestion={data} />
 			<CommentList comments={comments} />
 			<AddComment />
 		</div>

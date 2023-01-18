@@ -1,0 +1,68 @@
+div.container {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+
+	padding-top: 9.4rem;
+	margin: 0 auto;
+	width: 85vw;
+}
+
+.roadmap-banner {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	background-color: var(--navy);
+	padding: 2.7rem 4rem 2.7rem 3.2rem;
+	border-radius: 10px;
+	color: #fff;
+}
+
+.roadmap-banner-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.roadmap-banner-text h1 {
+	font-size: 2.4rem;
+	font-weight: 700;
+}
+
+.roadmap-board {
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: repeat(auto-fill, minmax(min-content, 1fr));
+}
+.roadmap-column {
+	display: flex;
+	flex-direction: column;
+
+	gap: 2.4rem;
+}
+
+.column-header {
+	display: flex;
+	flex-direction: column;
+
+	margin-bottom: 0.8rem;
+}
+
+.column-header h2 {
+	font-size: 1.8rem;
+	font-weight: 700;
+	letter-spacing: -0.25px;
+	color: var(--navy);
+	text-transform: capitalize;
+	line-height: 2.6rem;
+}
+
+.column-header .definition {
+	color: var(--navy-light);
+	font-size: 1.6rem;
+}
+
+.roadmap-cell {
+}

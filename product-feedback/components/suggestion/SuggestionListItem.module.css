@@ -10,6 +10,21 @@
 	background-color: var(--white);
 	border-radius: 1rem;
 }
+
+.suggestion-list-item--tile {
+	border-radius: 0.5rem;
+}
+
+.orange {
+	border-top: 0.6rem solid var(--orange);
+}
+.purple {
+	border-top: 0.6rem solid var(--purple);
+}
+.blue {
+	border-top: 0.6rem solid var(--blue-light);
+}
+
 .suggestion-list-item-content {
 	flex-grow: 1;
 
