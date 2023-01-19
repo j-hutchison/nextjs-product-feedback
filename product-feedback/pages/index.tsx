@@ -85,6 +85,7 @@ export default function Home<HomePageProps>({ data }) {
 				<Sidebar
 					onClickFilter={handleListFilter}
 					defaultTag={listFilter}
+					data={data}
 				></Sidebar>
 				<main className="flex-column">
 					<ControlPanel

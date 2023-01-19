@@ -9,6 +9,7 @@ interface SidebarStatusProps {
 
 const SidebarStatusIndicator: React.FC<SidebarStatusProps> = (props) => {
 	const color = props.color;
+	console.log(color);
 
 	const iconClasses = [classes["status-icon"], color && classes[color]].join(
 		" "

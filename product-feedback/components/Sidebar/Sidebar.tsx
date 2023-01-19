@@ -5,11 +5,14 @@ import Tag from "../ui/Tag";
 import SidebarStatusIndicator from "../ui/SidebarStatusIndicator";
 
 import { getCategoryList } from "../../data/GetListDataService";
+import { getColorFromStatus } from "../../data/GetListDataService";
 
+import { Suggestion } from "../suggestion/SuggestionList";
 import LogoBanner from "./LogoBanner";
 
 interface SidebarProps {
 	defaultTag: string;
+	data: Suggestion[];
 	onClickFilter: (filterValue: string) => void;
 }
 
@@ -30,6 +33,20 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 		classes["sidebar-content"],
 		showSidebar && classes["sidebar-mobile-visible"],
 	].join(" ");
+
+	const statusCountObject = props.data.reduce(
+		(acc: { [key: string]: number }, currValue: Suggestion) => {
+			if (acc[currValue.status]) {
+				acc[currValue.status] += 1;
+			} else {
+				acc[currValue.status] = 1;
+			}
+			return acc;
+		},
+		{}
+	);
+
+	console.log(statusCountObject);
 
 	return (
 		<aside className={classes.sidebar}>
@@ -57,8 +74,18 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 					</div>
 
 					<ul className={classes["roadmap-suggestion-list"]}>
-						<SidebarStatusIndicator text="Planned" color="orange" count={8} />
-						<SidebarStatusIndicator text="In-Progress" count={4} />
+						{Object.keys(statusCountObject)
+							.filter((value) => value !== "suggestion")
+							.map((status, idx) => {
+								return (
+									<SidebarStatusIndicator
+										key={idx}
+										text={status}
+										count={statusCountObject[status]}
+										color={getColorFromStatus(status)}
+									/>
+								);
+							})}
 					</ul>
 				</div>
 			</div>
