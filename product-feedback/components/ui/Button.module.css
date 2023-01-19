@@ -73,3 +73,9 @@
 .btn.navy:hover > :nth-child(2) {
 	text-decoration: underline;
 }
+
+@media only screen and (max-width: 580px) {
+	.btn {
+		font-size: 1.3rem;
+	}
+}

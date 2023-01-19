@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
 import classes from "./Roadmap.module.css";
 import { getStatusList } from "../../data/GetListDataService";
@@ -11,6 +11,7 @@ import SuggestionListItem from "../../components/suggestion/SuggestionListItem";
 import { Style } from "../../components/suggestion/SuggestionListItem";
 import { Suggestion } from "../../components/suggestion/SuggestionList";
 import { getAllSuggestions } from "../../data/GetFeedbackService";
+import { stat } from "fs";
 
 interface RoadmapProps {
 	data: Suggestion[];
@@ -18,8 +19,19 @@ interface RoadmapProps {
 
 const Roadmap: React.FC<RoadmapProps> = (props) => {
 	const statusList = getStatusList();
+	const [statusDisplayedMobile, setStatusDisplayedMobile] = useState(0);
 
 	const tile: Style = { name: "tile" };
+
+	const handleStatusHeadingClick = (index: number) => {
+		setStatusDisplayedMobile(() => index);
+	};
+
+	const isSuggestion = (status: any) => {
+		return status.name === "suggestion";
+	};
+
+	let mobileStatusHeaderClasses: string;
 
 	return (
 		<div className={classes.container}>
@@ -32,13 +44,52 @@ const Roadmap: React.FC<RoadmapProps> = (props) => {
 					Add Feedback
 				</Button>
 			</div>
-			<div className={classes["roadmap-board"]}>
+
+			<div className={classes["roadmap-filter--mobile"]}>
 				{statusList
-					.filter((status) => status.name !== "suggestion")
+					.filter((status) => !isSuggestion(status))
 					.map((status, statusIndex) => {
 						return (
 							<div
-								className={classes["roadmap-column"]}
+								key={statusIndex}
+								className={classes["roadmap-filter--mobile-heading"]}
+							>
+								<h2
+									onClick={handleStatusHeadingClick.bind(this, statusIndex)}
+									className={
+										statusIndex === statusDisplayedMobile
+											? [classes["active"], classes[status.color!]].join(" ")
+											: ""
+									}
+								>
+									{status.name} (
+									{props.data.reduce(
+										(prevValue, currValue) =>
+											currValue.status === status.name
+												? prevValue + 1
+												: prevValue,
+										0
+									)}
+									)
+								</h2>
+							</div>
+						);
+					})}
+			</div>
+			<div className={classes["roadmap-board"]}>
+				{statusList
+					.filter((status) => !isSuggestion(status))
+					.map((status, statusIndex) => {
+						mobileStatusHeaderClasses = [
+							classes["roadmap-column"],
+							statusDisplayedMobile === statusIndex
+								? classes["roadmap-column--active"]
+								: "",
+						].join(" ");
+
+						return (
+							<div
+								className={mobileStatusHeaderClasses}
 								key={statusIndex}
 								style={{
 									gridColumn: `${statusIndex + 1} / ${statusIndex + 2}`,

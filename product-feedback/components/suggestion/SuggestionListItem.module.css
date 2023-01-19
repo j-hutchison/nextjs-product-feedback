@@ -1,3 +1,5 @@
+@value roadmap-column--active from "../../pages/roadmap/Roadmap.module.css";
+
 .suggestion-list-item {
 	display: flex;
 	align-items: flex-start;
@@ -90,10 +92,22 @@
 }
 
 @media only screen and (max-width: 580px) {
+	.suggestion-list-item--tile {
+		visibility: hidden;
+		position: absolute;
+		right: 100%;
+	}
+
 	.suggestion-title {
 		font-size: 1.3rem;
 	}
 	.suggestion-description {
 		font-size: 1.3rem;
+	}
+
+	.roadmap-column--active .suggestion-list-item--tile {
+		visibility: visible;
+		position: relative;
+		right: unset;
 	}
 }

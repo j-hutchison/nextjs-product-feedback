@@ -18,3 +18,9 @@
 .navigate-back--white a {
 	color: #fff;
 }
+
+@media only screen and (max-width: 580px) {
+	.navigate-back a {
+		font-size: 1.3rem;
+	}
+}
