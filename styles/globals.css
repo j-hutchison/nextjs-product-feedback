@@ -128,7 +128,7 @@ div.container {
 		flex-direction: column;
 		gap: 4rem;
 
-		width: 100%;
+		width: 100vw;
 
 		padding: 5.6rem 3.9rem;
 	}
@@ -142,5 +142,7 @@ div.container {
 	div.container {
 		padding: 0;
 		gap: 0;
+
+		overflow-x: hidden;
 	}
 }

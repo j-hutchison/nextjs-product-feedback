@@ -94,6 +94,7 @@
 
 @media only screen and (max-width: 580px) {
 	.sidebar {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 
@@ -117,7 +118,8 @@
 		top: var(--banner-height-mobile);
 		left: 100%;
 
-		visibility: hidden;
+		/* visibility: hidden; */
+		/* transform: translateX(100%); */
 
 		gap: 2.4rem;
 
@@ -132,7 +134,7 @@
 	}
 
 	.sidebar-mobile-visible {
-		visibility: visible;
+		transform: translateX(0%);
 		left: calc(100% - var(--mobile-sidebar-width));
 
 		transition: all ease-in-out 0.4s;
