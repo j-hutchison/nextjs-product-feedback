@@ -21,6 +21,9 @@
 	padding-bottom: 4rem;
 }
 
+.suggestion-list-item--mobile {
+}
+
 .suggestion-list-item--tile .comments {
 	align-self: flex-end;
 }
@@ -103,6 +106,20 @@
 		right: 100%;
 	}
 
+	.suggestion-list-item--mobile {
+	}
+
+	.suggestion-list-item--mobile {
+		position: relative;
+		flex-direction: column;
+		gap: 0.8rem;
+		border-radius: 0.5rem;
+		padding-bottom: 4rem;
+	}
+	.suggestion-list-item--mobile .comments {
+		align-self: flex-end;
+	}
+
 	.suggestion-title {
 		font-size: 1.3rem;
 	}
@@ -114,5 +131,9 @@
 		visibility: visible;
 		position: relative;
 		right: unset;
+	}
+
+	.comments {
+		margin-top: 2.2rem;
 	}
 }

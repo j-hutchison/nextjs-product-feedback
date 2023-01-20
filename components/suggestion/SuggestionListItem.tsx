@@ -34,6 +34,7 @@ const SuggestionListItem: React.FC<SuggestionListItemProps> = (props) => {
 
 	const suggestionListItemClasses = [
 		classes["suggestion-list-item"],
+		classes["suggestion-list-item--mobile"],
 		tileStyles,
 	].join(" ");
 

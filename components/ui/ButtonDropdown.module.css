@@ -88,4 +88,8 @@
 		top: 35%;
 		transform: translateY(-50%);
 	}
+
+	.dropdown {
+		z-index: 99999;
+	}
 }
