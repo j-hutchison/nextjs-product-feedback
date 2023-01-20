@@ -67,8 +67,19 @@
 	gap: 1.6rem;
 }
 
+.form-btn-panel--left {
+}
+
 @media only screen and (max-width: 580px) {
 	.container {
 		margin: unset;
+	}
+
+	.form-btn-panel {
+		flex-direction: column-reverse;
+	}
+
+	.form-btn-panel--right {
+		flex-direction: column-reverse;
 	}
 }

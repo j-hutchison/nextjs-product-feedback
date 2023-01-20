@@ -12,6 +12,9 @@
 	background-color: var(--white);
 }
 
+.comment-container {
+}
+
 .container h2 {
 	font-size: 1.8rem;
 	color: var(--navy);

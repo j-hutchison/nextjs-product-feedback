@@ -92,6 +92,11 @@
 }
 
 @media only screen and (max-width: 580px) {
+	.suggestion-list-item {
+		gap: 2rem;
+		padding: 2.5rem;
+	}
+
 	.suggestion-list-item--tile {
 		visibility: hidden;
 		position: absolute;

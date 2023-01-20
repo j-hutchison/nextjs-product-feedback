@@ -135,6 +135,10 @@ div.container {
 }
 
 @media only screen and (max-width: 580px) {
+	html {
+		font-size: 58%;
+	}
+
 	body {
 		overflow-x: hidden;
 	}

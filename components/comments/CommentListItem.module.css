@@ -88,4 +88,20 @@
 	.comment p {
 		font-size: 1.3rem;
 	}
+
+	.comment-reply-form {
+		width: 100%;
+	}
+
+	.comment {
+		width: calc(100% - 80px);
+	}
+
+	.comment-reply-form {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+
+		width: 100%;
+	}
 }

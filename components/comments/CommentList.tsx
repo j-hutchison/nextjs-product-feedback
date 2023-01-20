@@ -20,9 +20,10 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
 			{comments.map((comment, idx) => {
 				return (
 					<div
-						className={`${classes["comment-container"]} ${
-							idx > 0 && classes["border-top"]
-						}`}
+						className={`${[
+							classes["comment-container"],
+							idx > 0 && classes["border-top"],
+						].join(" ")}`}
 						key={idx}
 					>
 						<CommentListItem data={comment}>

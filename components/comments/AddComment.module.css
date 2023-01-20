@@ -11,6 +11,7 @@
 .container footer {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .add-comment-title {
@@ -21,4 +22,10 @@
 	margin-top: 0.3rem;
 	font-size: 1.5rem;
 	color: var(--navy-light);
+}
+
+@media only screen and (max-width: 580px) {
+	.add-comment-character-limit {
+		font-size: 1.3rem;
+	}
 }

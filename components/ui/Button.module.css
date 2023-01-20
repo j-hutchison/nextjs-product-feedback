@@ -1,3 +1,6 @@
+@value form-btn-panel--left from "../suggestion/SuggestionForm.module.css";
+@value form-btn-panel--right from "../suggestion/SuggestionForm.module.css";
+
 .btn {
 	display: flex;
 	align-items: center;
@@ -77,5 +80,14 @@
 @media only screen and (max-width: 580px) {
 	.btn {
 		font-size: 1.3rem;
+		padding: 1rem 1.6rem;
+	}
+
+	.form-btn-panel--right .btn {
+		width: 100%;
+	}
+
+	.form-btn-panel--left .btn {
+		width: 100%;
 	}
 }
