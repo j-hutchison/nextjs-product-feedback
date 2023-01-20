@@ -66,3 +66,9 @@
 	display: flex;
 	gap: 1.6rem;
 }
+
+@media only screen and (max-width: 580px) {
+	.container {
+		margin: unset;
+	}
+}
