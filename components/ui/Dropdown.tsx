@@ -9,7 +9,7 @@ export interface Category {
 	index: number;
 	name: string;
 	default: boolean;
-	definition: string;
+	definition?: string;
 }
 
 interface DropdownProps {

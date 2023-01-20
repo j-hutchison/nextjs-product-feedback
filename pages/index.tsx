@@ -20,7 +20,7 @@ interface HomePageProps {
 	data: Suggestion[];
 }
 
-export default function Home<HomePageProps>({ data }) {
+export default function Home({ data }: HomePageProps) {
 	const [listSort, setListSort] = useState<SortOption>({
 		field: "",
 		label: "",

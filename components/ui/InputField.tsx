@@ -27,7 +27,9 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 	const [hasError, setHasError] = useState(false);
 	const inputFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
-	const onInputFieldChange = (e: React.ChangeEvent) => {
+	const onInputFieldChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		console.log(e.target.value);
 		setFieldValue(() => e.target.value);
 
@@ -50,14 +52,14 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 	return (
 		<div className={classes.container}>
 			<InputFieldLabel
-				id={props.id}
+				htmlFor={props.id}
 				label={props.label}
 				description={props.description}
 			/>
 			{props.type === "textarea" && (
 				<textarea
 					placeholder={props.placeholder}
-					ref={inputFieldRef}
+					ref={inputFieldRef as React.RefObject<HTMLTextAreaElement>}
 					id={props.id}
 					className={inputFieldClasses}
 					rows={props.rows}
@@ -68,7 +70,7 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 			{props.type !== "textarea" && (
 				<input
 					placeholder={props.placeholder}
-					ref={inputFieldRef}
+					ref={inputFieldRef as React.RefObject<HTMLInputElement>}
 					id={props.id}
 					className={inputFieldClasses}
 					type={props.type}
@@ -82,5 +84,6 @@ const InputField = React.forwardRef<InputRef, InputFieldProps>((props, ref) => {
 		</div>
 	);
 });
+InputField.displayName = "InputField";
 
 export default InputField;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import classes from "./Sidebar.module.css";
 import Tag from "../ui/Tag";
@@ -70,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
 				<div className={classes.roadmap}>
 					<div className={classes["roadmap-heading"]}>
 						<h3>Roadmap</h3>
-						<a href="/roadmap">View</a>
+						<Link href="/roadmap">View</Link>
 					</div>
 
 					<ul className={classes["roadmap-suggestion-list"]}>

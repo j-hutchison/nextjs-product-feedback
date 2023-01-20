@@ -39,7 +39,7 @@ const FeedbackPage: React.FC<FeedbackPageProps> = ({ data }) => {
 					Edit Feedback
 				</Button>
 			</div>
-			<SuggestionListItem id={id} suggestion={data} />
+			<SuggestionListItem suggestion={data} />
 			<CommentList comments={comments} />
 			<AddComment />
 		</div>
